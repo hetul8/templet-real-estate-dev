@@ -36,7 +36,7 @@ export function Services() {
   ];
 
   return (
-    <section id="services" className="relative py-32 md:py-48 px-8 md:px-16 bg-black">
+    <section id="services" className="relative py-20 md:py-48 px-6 md:px-16 bg-black">
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{

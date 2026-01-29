@@ -13,7 +13,7 @@ export function About() {
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
 
   return (
-    <section id="about" ref={ref} className="relative py-40 md:py-56 px-8 md:px-20 bg-black overflow-hidden">
+    <section id="about" ref={ref} className="relative py-24 md:py-56 px-6 md:px-20 bg-black overflow-hidden">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div 

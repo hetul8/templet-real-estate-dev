@@ -30,7 +30,7 @@ export function Testimonials() {
   ];
 
   return (
-    <section className="relative py-32 md:py-48 px-8 md:px-16 bg-zinc-950">
+    <section className="relative py-20 md:py-48 px-6 md:px-16 bg-zinc-950">
       <div className="max-w-[1600px] mx-auto">
         {/* Header */}
         <motion.div
@@ -69,7 +69,7 @@ export function Testimonials() {
               className="relative group"
             >
               {/* Card */}
-              <div className="relative bg-black border border-stone-800 p-10 group-hover:border-[#d4af37]/50 transition-all">
+              <div className="relative bg-black border border-stone-800 p-8 md:p-10 group-hover:border-[#d4af37]/50 transition-all">
                 {/* Quote Icon */}
                 <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#d4af37] flex items-center justify-center">
                   <Quote className="w-6 h-6 text-black" />

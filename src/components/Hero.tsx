@@ -181,14 +181,14 @@ export function Hero() {
           className="flex flex-col items-center gap-4 group"
           aria-label="Scroll to content"
         >
-          <span className="text-[10px] tracking-[0.4em] uppercase text-white/40 group-hover:text-white/60 transition-colors">
+          <span className="text-xs tracking-[0.4em] uppercase text-white/40 group-hover:text-white/60 transition-colors">
             Explore
           </span>
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ChevronDown className="w-5 h-5 text-[#d4af37]" strokeWidth={1.5} />
+            <ChevronDown className="w-6 h-6 text-[#d4af37]" strokeWidth={1.5} />
           </motion.div>
         </button>
       </motion.div>
