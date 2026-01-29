@@ -30,7 +30,7 @@ export function Testimonials() {
   ];
 
   return (
-    <section className="relative py-32 md:py-48 px-8 md:px-16 bg-zinc-950">
+    <section className="relative z-20 py-40 md:py-64 px-8 md:px-16 bg-zinc-950">
       <div className="max-w-[1600px] mx-auto">
         {/* Header */}
         <motion.div
@@ -46,7 +46,7 @@ export function Testimonials() {
             transition={{ duration: 1 }}
             className="h-px bg-[#d4af37] mx-auto mb-8"
           />
-          
+
           <div className="text-xs tracking-[0.5em] uppercase text-[#d4af37] mb-8">
             Client Stories
           </div>

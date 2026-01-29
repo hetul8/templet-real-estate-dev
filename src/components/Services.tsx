@@ -36,7 +36,7 @@ export function Services() {
   ];
 
   return (
-    <section id="services" className="relative py-32 md:py-48 px-8 md:px-16 bg-black">
+    <section id="services" className="relative z-10 py-32 md:py-48 px-8 md:px-16 bg-black">
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -60,7 +60,7 @@ export function Services() {
             transition={{ duration: 1 }}
             className="h-px bg-[#d4af37] mx-auto mb-8"
           />
-          
+
           <div className="text-xs tracking-[0.5em] uppercase text-[#d4af37] mb-8">
             Our Expertise
           </div>

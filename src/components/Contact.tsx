@@ -25,7 +25,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-20 md:py-48 px-8 md:px-16 bg-black">
+    <section id="contact" className="relative z-30 py-40 md:py-64 px-8 md:px-16 bg-black">
       <div className="max-w-[1600px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24">
           {/* Left - Info */}
