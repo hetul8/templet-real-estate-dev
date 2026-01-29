@@ -127,12 +127,12 @@ export function Contact() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 transition-colors"
+                        className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 text-base transition-colors"
                         placeholder="Enter your full name"
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-xs tracking-[0.3em] uppercase text-[#d4af37] mb-4">
                           Email *
@@ -142,7 +142,7 @@ export function Contact() {
                           required
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 transition-colors"
+                          className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 text-base transition-colors"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -156,13 +156,13 @@ export function Contact() {
                           required
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 transition-colors"
+                          className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 text-base transition-colors"
                           placeholder="+91 98765 43210"
                         />
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-xs tracking-[0.3em] uppercase text-[#d4af37] mb-4">
                           Interest
@@ -170,7 +170,7 @@ export function Contact() {
                         <select
                           value={formData.interest}
                           onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                          className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 transition-colors"
+                          className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 text-base transition-colors"
                         >
                           <option className="bg-black">Luxury Residences</option>
                           <option className="bg-black">Premium Villas</option>
@@ -186,7 +186,7 @@ export function Contact() {
                         <select
                           value={formData.budget}
                           onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                          className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 transition-colors"
+                          className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 text-base transition-colors"
                         >
                           <option className="bg-black">5-10 Cr</option>
                           <option className="bg-black">10-20 Cr</option>
@@ -203,7 +203,7 @@ export function Contact() {
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         rows={4}
-                        className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 resize-none transition-colors"
+                        className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 text-base resize-none transition-colors"
                         placeholder="Tell us about your requirements..."
                       />
                     </div>
@@ -211,8 +211,8 @@ export function Contact() {
                     <motion.button
                       type="submit"
                       whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full bg-gradient-to-r from-[#d4af37] to-[#f0d06c] text-black py-5 flex items-center justify-center gap-3 group relative overflow-hidden"
+                      whileTap={{ scale: 0.95 }}
+                      className="w-full bg-gradient-to-r from-[#d4af37] to-[#f0d06c] text-black py-5 flex items-center justify-center gap-3 group relative overflow-hidden active:scale-95 transition-transform"
                     >
                       <span className="text-xs tracking-[0.3em] uppercase font-medium">Submit Inquiry</span>
                       <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, Circle, Play, X, Check } from 'lucide-react';
-import { Property } from '../App';
+import { Property } from '../data/properties';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { NeighborhoodData } from './NeighborhoodData';
 import { BrochureRequest } from './BrochureRequest';
@@ -66,7 +66,7 @@ export function PropertyDetail({ property, onBack }: PropertyDetailProps) {
                   className="w-full h-full"
                 >
                   <ImageWithFallback
-                    src={`https://source.unsplash.com/2400x1600/?${encodeURIComponent(property.images[selectedImage])}`}
+                    src={property.images[selectedImage]}
                     alt={property.name}
                     className="w-full h-full object-cover"
                   />

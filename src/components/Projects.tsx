@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, ArrowRight } from 'lucide-react';
-import { Property } from '../App';
+import { Property } from '../data/properties';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface ProjectsProps {
@@ -15,7 +15,7 @@ export function Projects({ properties, onSelectProperty }: ProjectsProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="portfolio" className="relative py-20 md:py-48 px-8 md:px-16 bg-zinc-950">
+    <section id="portfolio" className="relative py-16 md:py-48 px-6 md:px-16 bg-zinc-950">
       <div className="max-w-[1800px] mx-auto">
         {/* Header */}
         <motion.div
@@ -89,7 +89,7 @@ function ProjectCard({ property, index, onSelect, isHovered, onHover, onLeave }:
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       onClick={() => onSelect(property)}
-      className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center cursor-pointer group ${isEven ? '' : 'lg:grid-flow-dense'
+      className={`grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center cursor-pointer group ${isEven ? '' : 'lg:grid-flow-dense'
         }`}
     >
       {/* Image */}
@@ -101,7 +101,7 @@ function ProjectCard({ property, index, onSelect, isHovered, onHover, onLeave }:
             className="w-full h-full"
           >
             <ImageWithFallback
-              src={`https://source.unsplash.com/1600x1100/?${encodeURIComponent(property.images[0])}`}
+              src={property.images[0]}
               alt={property.name}
               className="w-full h-full object-cover"
             />

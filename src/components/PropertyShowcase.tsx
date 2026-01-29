@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Circle } from 'lucide-react';
-import { Property } from '../App';
+import { Property } from '../data/properties';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface PropertyShowcaseProps {
@@ -14,7 +14,7 @@ interface PropertyShowcaseProps {
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.6, 0.05, 0.01, 0.9] }
+  transition: { duration: 0.6, ease: [0.6, 0.05, 0.01, 0.9] as [number, number, number, number] }
 };
 
 export function PropertyShowcase({ properties, onSelectProperty }: PropertyShowcaseProps) {
@@ -176,7 +176,7 @@ function PropertyCard({ property, onSelect, index }: PropertyCardProps) {
           className="w-full h-full"
         >
           <ImageWithFallback
-            src={`https://source.unsplash.com/900x1200/?${encodeURIComponent(property.images[0])}`}
+            src={property.images[0]}
             alt={property.name}
             className="w-full h-full object-cover"
           />
