@@ -71,8 +71,8 @@ export function Testimonials() {
               {/* Card */}
               <div className="relative bg-black border border-stone-800 p-10 group-hover:border-[#d4af37]/50 transition-all">
                 {/* Quote Icon */}
-                <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#d4af37] flex items-center justify-center">
-                  <Quote className="w-6 h-6 text-black" />
+                <div className="absolute -top-6 -left-6 opacity-20">
+                  <Quote className="w-20 h-20 text-[#d4af37]" />
                 </div>
 
                 {/* Stars */}
