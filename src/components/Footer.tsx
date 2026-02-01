@@ -7,7 +7,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-16">
           {/* Brand */}
           <div className="md:col-span-4">
-            <div className="serif text-5xl text-[#d4af37] mb-6">PRESTIGE</div>
+            <div className="serif text-5xl text-[#d4af37] mb-6">RAAMAH</div>
             <p className="text-stone-400 leading-relaxed mb-8 font-light">
               Crafting architectural masterpieces since 2005. Where luxury meets legacy, 
               and dreams transform into extraordinary living spaces.
@@ -67,7 +67,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 text-stone-400 font-light">
                 <Mail className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
-                <span className="text-sm">luxury@prestige.com</span>
+                <span className="text-sm">luxury@raamah.com</span>
               </li>
             </ul>
           </div>
@@ -76,7 +76,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="pt-8 border-t border-stone-800 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-stone-500 text-sm font-light">
-            © 2024 Prestige Developers. All rights reserved.
+            © 2024 Raamah Developers. All rights reserved.
           </div>
           
           <div className="flex gap-8 text-sm">

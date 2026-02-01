@@ -1,0 +1,16 @@
+
+> Digital Showroom for Developers@0.1.0 dev
+> next dev
+
+⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.mjs to protect your application from malicious users.
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+
+✓ Starting...
+✓ Ready in 641ms
+○ Compiling / ...
+ GET / 200 in 8.9s (compile: 8.4s, render: 584ms)
+ GET / 200 in 92ms (compile: 7ms, render: 85ms)
+ GET / 200 in 528ms (compile: 310ms, render: 219ms)
+[?25h

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle, Mail, Phone, MessageSquare } from 'lucide-react';
-import { Property } from '../App';
+import { Property } from '../data/properties';
 
 interface BrochureRequestProps {
   property: Property;

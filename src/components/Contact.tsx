@@ -72,7 +72,7 @@ export function Contact() {
                 {
                   icon: Mail,
                   title: 'Email',
-                  content: 'luxury@prestige.com\nsales@prestige.com'
+                  content: 'luxury@raamah.com\nsales@raamah.com'
                 },
                 {
                   icon: Clock,

@@ -1,10 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { MapPin, ArrowRight } from 'lucide-react';
-import { Property } from '../App';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { Property } from '../data/properties';
+import { ArrowUpRight } from 'lucide-react';
 
 interface ProjectsProps {
   properties: Property[];
@@ -12,187 +11,92 @@ interface ProjectsProps {
 }
 
 export function Projects({ properties, onSelectProperty }: ProjectsProps) {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   return (
-    <section id="portfolio" className="relative py-20 md:py-48 px-8 md:px-16 bg-zinc-950">
-      <div className="max-w-[1800px] mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 md:mb-24"
-        >
+    <section ref={containerRef} id="properties" className="relative h-[400vh] bg-raamah-black">
+      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
+        {/* Background Elements */}
+        <div className="absolute top-20 left-10 md:left-20 z-10">
           <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 60 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="h-px bg-[#d4af37] mb-8"
-          />
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-xs tracking-[0.4em] text-raamah-gold uppercase mb-4"
+          >
+            Exclusive Portfolio
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="serif text-5xl md:text-7xl text-white"
+          >
+            Curated Living
+          </motion.h2>
+        </div>
 
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-            <div>
-              <div className="text-xs tracking-[0.5em] uppercase text-[#d4af37] mb-6 md:mb-8">
-                Signature Portfolio
-              </div>
-              <h2 className="serif text-4xl md:text-8xl text-white leading-[1.1]">
-                Masterpieces
-                <span className="block text-[#d4af37]">in Making</span>
-              </h2>
-            </div>
-            <p className="text-lg md:text-xl text-stone-400 max-w-xl font-light leading-relaxed">
-              Each project tells a story of ambition, innovation, and uncompromising quality.
-              Explore our collection of extraordinary spaces.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Projects */}
-        <div className="space-y-24 md:space-y-32">
+        <motion.div style={{ x }} className="flex gap-20 px-20 md:px-40">
           {properties.map((property, index) => (
             <ProjectCard
               key={property.id}
               property={property}
               index={index}
-              onSelect={onSelectProperty}
-              isHovered={hoveredIndex === index}
-              onHover={() => setHoveredIndex(index)}
-              onLeave={() => setHoveredIndex(null)}
+              onClick={() => onSelectProperty(property)}
             />
           ))}
-        </div>
+          {/* End Card */}
+          <div className="min-w-[40vw] h-[70vh] flex items-center justify-center border border-white/10 group cursor-pointer hover:bg-raamah-gold hover:border-raamah-gold transition-colors duration-500">
+             <div className="text-center">
+                <div className="serif text-4xl text-white group-hover:text-black mb-4">View All</div>
+                <div className="text-xs uppercase tracking-widest text-white/50 group-hover:text-black/70">Our Collection</div>
+             </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-interface ProjectCardProps {
-  property: Property;
-  index: number;
-  onSelect: (property: Property) => void;
-  isHovered: boolean;
-  onHover: () => void;
-  onLeave: () => void;
-}
-
-function ProjectCard({ property, index, onSelect, isHovered, onHover, onLeave }: ProjectCardProps) {
-  const isEven = index % 2 === 0;
-
+function ProjectCard({ property, index, onClick }: { property: Property, index: number, onClick: () => void }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 1, delay: index * 0.2 }}
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
-      onClick={() => onSelect(property)}
-      className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center cursor-pointer group ${isEven ? '' : 'lg:grid-flow-dense'
-        }`}
+    <div
+      onClick={onClick}
+      className="relative min-w-[85vw] md:min-w-[60vw] h-[70vh] group cursor-none"
     >
-      {/* Image */}
-      <div className={`lg:col-span-7 relative ${isEven ? '' : 'lg:col-start-6'}`}>
-        <div className="relative aspect-[16/11] overflow-hidden bg-zinc-900">
-          <motion.div
-            animate={{ scale: isHovered ? 1.05 : 1 }}
-            transition={{ duration: 0.8, ease: [0.6, 0.05, 0.01, 0.9] }}
-            className="w-full h-full"
-          >
-            <ImageWithFallback
-              src={`https://source.unsplash.com/1600x1100/?${encodeURIComponent(property.images[0])}`}
-              alt={property.name}
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+      <div className="w-full h-full overflow-hidden relative">
+        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700 z-10" />
+        <motion.img
+          src={property.images[0]}
+          alt={property.name}
+          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+        />
 
-          {/* Overlay */}
-          <motion.div
-            animate={{ opacity: isHovered ? 0.8 : 0.4 }}
-            className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"
-          />
+        {/* Content Overlay */}
+        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 z-20 bg-gradient-to-t from-black/90 to-transparent">
+          <div className="flex justify-between items-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+            <div>
+              <div className="text-[#d4af37] text-xs tracking-[0.3em] uppercase mb-4">
+                0{index + 1} / {property.location}
+              </div>
+              <h3 className="serif text-4xl md:text-6xl text-white mb-2">
+                {property.name}
+              </h3>
+              <div className="text-white/70 font-light tracking-wide">
+                {property.type}
+              </div>
+            </div>
 
-          {/* Status Badge */}
-          <div className="absolute top-8 right-8">
-            <div className="bg-[#d4af37] text-black px-6 py-2 text-xs tracking-[0.2em] uppercase">
-              {property.status}
+            <div className="w-16 h-16 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-[#d4af37] group-hover:border-[#d4af37] transition-all duration-500">
+              <ArrowUpRight className="w-6 h-6 text-white group-hover:text-black" />
             </div>
           </div>
-
-          {/* Gold Frame */}
-          <motion.div
-            animate={{
-              opacity: isHovered ? 1 : 0,
-              scale: isHovered ? 1 : 0.95
-            }}
-            className="absolute -inset-4 border border-[#d4af37]/50 pointer-events-none"
-          />
         </div>
       </div>
-
-      {/* Content */}
-      <div className={`lg:col-span-5 ${isEven ? '' : 'lg:col-start-1 lg:row-start-1'}`}>
-        <motion.div
-          animate={{ x: isHovered ? (isEven ? 20 : -20) : 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Number */}
-          <div className="serif text-6xl md:text-8xl text-[#d4af37]/10 mb-4 md:mb-6">
-            {String(index + 1).padStart(2, '0')}
-          </div>
-
-          {/* Type */}
-          <div className="text-[10px] md:text-xs tracking-[0.4em] uppercase text-stone-500 mb-4 md:mb-6">
-            {property.type}
-          </div>
-
-          {/* Name */}
-          <h3 className="serif text-4xl md:text-6xl text-white mb-6 leading-[1.1] group-hover:text-[#d4af37] transition-colors">
-            {property.name}
-          </h3>
-
-          {/* Location */}
-          <div className="flex items-center gap-3 text-stone-400 mb-8">
-            <MapPin className="w-4 h-4 text-[#d4af37]" />
-            <span className="text-sm tracking-wider">{property.location}</span>
-          </div>
-
-          {/* Description */}
-          <p className="text-stone-400 leading-relaxed mb-8 font-light">
-            {property.description}
-          </p>
-
-          {/* Details */}
-          <div className="grid grid-cols-2 gap-6 mb-10 pb-10 border-b border-stone-800">
-            <div>
-              <div className="text-xs text-stone-500 mb-2 tracking-wider">Configuration</div>
-              <div className="text-white">{property.bedrooms}</div>
-            </div>
-            <div>
-              <div className="text-xs text-stone-500 mb-2 tracking-wider">Area</div>
-              <div className="text-white">{property.area}</div>
-            </div>
-            <div>
-              <div className="text-xs text-stone-500 mb-2 tracking-wider">Investment</div>
-              <div className="serif text-2xl text-[#d4af37]">{property.price}</div>
-            </div>
-            <div>
-              <div className="text-xs text-stone-500 mb-2 tracking-wider">Possession</div>
-              <div className="text-white">{property.completionDate}</div>
-            </div>
-          </div>
-
-          {/* CTA */}
-          <motion.div
-            animate={{ x: isHovered ? 10 : 0 }}
-            className="flex items-center gap-3 text-[#d4af37] group"
-          >
-            <span className="text-xs tracking-[0.3em] uppercase">Explore Project</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-          </motion.div>
-        </motion.div>
-      </div>
-    </motion.div>
+    </div>
   );
 }
