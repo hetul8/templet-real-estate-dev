@@ -80,7 +80,7 @@ function ProjectCard({ property, index, onClick }: { property: Property, index: 
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 z-20 bg-gradient-to-t from-black/90 to-transparent">
           <div className="flex justify-between items-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
             <div>
-              <div className="text-[#d4af37] text-xs tracking-[0.3em] uppercase mb-4">
+              <div className="text-raamah-gold text-xs tracking-[0.3em] uppercase mb-4">
                 0{index + 1} / {property.location}
               </div>
               <h3 className="serif text-4xl md:text-6xl text-white mb-2">
@@ -91,7 +91,7 @@ function ProjectCard({ property, index, onClick }: { property: Property, index: 
               </div>
             </div>
 
-            <div className="w-16 h-16 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-[#d4af37] group-hover:border-[#d4af37] transition-all duration-500">
+            <div className="w-16 h-16 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-raamah-gold group-hover:border-raamah-gold transition-all duration-500">
               <ArrowUpRight className="w-6 h-6 text-white group-hover:text-black" />
             </div>
           </div>
