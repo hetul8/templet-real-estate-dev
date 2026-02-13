@@ -13,7 +13,7 @@ export function About() {
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
 
   return (
-    <section id="about" ref={ref} className="relative py-40 md:py-56 px-8 md:px-20 bg-black overflow-hidden">
+    <section id="about" ref={ref} className="relative py-40 md:py-56 px-8 md:px-20 bg-raamah-black overflow-hidden">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div 
@@ -37,7 +37,7 @@ export function About() {
               whileInView={{ width: 80, opacity: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.5, delay: 0.2, ease: [0.6, 0.05, 0.01, 0.9] }}
-              className="h-px bg-gradient-to-r from-[#d4af37] via-[#f0d06c] to-transparent mb-12"
+              className="h-px bg-gradient-to-r from-raamah-gold via-[#f0d06c] to-transparent mb-12"
             />
 
             <motion.div
@@ -45,7 +45,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-[10px] tracking-[0.6em] uppercase text-[#d4af37] mb-12 font-light"
+              className="text-[10px] tracking-[0.6em] uppercase text-raamah-gold mb-12 font-light"
             >
               Our Philosophy
             </motion.div>
@@ -60,7 +60,7 @@ export function About() {
               Building More
               <br />
               Than
-              <span className="block text-[#d4af37] mt-2">Structures</span>
+              <span className="block text-raamah-gold mt-2">Structures</span>
             </motion.h2>
             
             <motion.div
@@ -70,13 +70,13 @@ export function About() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="space-y-8 mb-16"
             >
-              <p className="text-lg md:text-xl text-stone-400 leading-[1.9] font-light">
+              <p className="text-lg md:text-xl text-white/70 leading-[1.9] font-light">
                 For nearly two decades, we have stood at the intersection of artistry and 
                 architecture. Each project is a canvas where vision meets precision, where 
                 luxury is not just a promise but a guarantee.
               </p>
               
-              <p className="text-lg md:text-xl text-stone-400 leading-[1.9] font-light">
+              <p className="text-lg md:text-xl text-white/70 leading-[1.9] font-light">
                 We don't merely construct buildings; we craft legacies. Our commitment to 
                 excellence has earned us the trust of India's most discerning clientele.
               </p>
@@ -97,12 +97,12 @@ export function About() {
                   transition={{ delay: 0.6 + i * 0.15 }}
                   className="relative group"
                 >
-                  <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#d4af37]/50 via-[#d4af37]/20 to-transparent" />
+                  <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-raamah-gold/50 via-raamah-gold/20 to-transparent" />
                   <div className="pl-6">
-                    <div className="serif text-5xl md:text-6xl text-[#d4af37] mb-3 group-hover:scale-110 transition-transform duration-500">
+                    <div className="serif text-5xl md:text-6xl text-raamah-gold mb-3 group-hover:scale-110 transition-transform duration-500">
                       {stat.value}
                     </div>
-                    <div className="text-[10px] text-stone-500 tracking-[0.3em] uppercase leading-relaxed">
+                    <div className="text-[10px] text-white/50 tracking-[0.3em] uppercase leading-relaxed">
                       {stat.label}
                     </div>
                   </div>
@@ -125,7 +125,7 @@ export function About() {
             >
               {/* Main Image Container */}
               <div className="relative aspect-[3/4] overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-raamah-black/90 via-raamah-black/20 to-transparent z-10" />
                 <motion.img
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.8, ease: [0.6, 0.05, 0.01, 0.9] }}
@@ -136,8 +136,8 @@ export function About() {
               </div>
 
               {/* Decorative Frames */}
-              <div className="absolute -inset-6 border border-[#d4af37]/10 -z-10 group-hover:border-[#d4af37]/20 transition-colors duration-700" />
-              <div className="absolute -inset-12 border border-[#d4af37]/5 -z-20" />
+              <div className="absolute -inset-6 border border-raamah-gold/10 -z-10 group-hover:border-raamah-gold/20 transition-colors duration-700" />
+              <div className="absolute -inset-12 border border-raamah-gold/5 -z-20" />
               
               {/* Floating Award Badge */}
               <motion.div
@@ -146,9 +146,9 @@ export function About() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.8, duration: 1 }}
                 whileHover={{ scale: 1.05, x: -8 }}
-                className="absolute -left-6 md:-left-12 bottom-24 bg-black border border-[#d4af37] p-10 backdrop-blur-sm"
+                className="absolute -left-6 md:-left-12 bottom-24 bg-raamah-black border border-raamah-gold p-10 backdrop-blur-sm"
               >
-                <div className="text-[10px] tracking-[0.4em] uppercase text-[#d4af37] mb-3 font-light">
+                <div className="text-[10px] tracking-[0.4em] uppercase text-raamah-gold mb-3 font-light">
                   Award Winning
                 </div>
                 <div className="serif text-5xl text-white leading-none">
@@ -159,13 +159,13 @@ export function About() {
                   whileInView={{ width: '100%' }}
                   viewport={{ once: true }}
                   transition={{ delay: 1.2, duration: 1 }}
-                  className="h-px bg-gradient-to-r from-[#d4af37] to-transparent mt-4"
+                  className="h-px bg-gradient-to-r from-raamah-gold to-transparent mt-4"
                 />
               </motion.div>
 
               {/* Corner Accent */}
-              <div className="absolute top-0 right-0 w-20 h-20 border-t border-r border-[#d4af37]/30" />
-              <div className="absolute bottom-0 left-0 w-20 h-20 border-b border-l border-[#d4af37]/30" />
+              <div className="absolute top-0 right-0 w-20 h-20 border-t border-r border-raamah-gold/30" />
+              <div className="absolute bottom-0 left-0 w-20 h-20 border-b border-l border-raamah-gold/30" />
             </motion.div>
           </motion.div>
         </div>

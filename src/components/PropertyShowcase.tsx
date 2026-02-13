@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Circle } from 'lucide-react';
-import { Property } from '../App';
+import { Property } from '../data/properties';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface PropertyShowcaseProps {

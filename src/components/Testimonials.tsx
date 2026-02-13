@@ -1,113 +1,126 @@
-import { motion } from 'motion/react';
-import { Star, Quote } from 'lucide-react';
+'use client';
+
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Quote, ArrowLeft, ArrowRight } from 'lucide-react';
 
 export function Testimonials() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const testimonials = [
     {
-      name: 'Vikram Malhotra',
-      title: 'CEO, Tech Innovations',
-      location: 'Celestial Towers, Mumbai',
-      rating: 5,
-      text: 'Unparalleled craftsmanship and attention to detail. Every corner of our penthouse speaks of luxury and sophistication. This is what true premium living feels like.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150'
+      text: "Unparalleled craftsmanship. Every corner of our penthouse speaks of luxury and sophistication. This is what true premium living feels like.",
+      author: "Vikram Malhotra",
+      role: "CEO, Tech Innovations",
+      project: "Celestial Towers"
     },
     {
-      name: 'Priya Deshmukh',
-      title: 'Entrepreneur',
-      location: 'Royal Enclave, Bangalore',
-      rating: 5,
-      text: 'From design consultation to final handover, the experience was seamless. Our villa is an architectural masterpiece that exceeds all expectations.',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150'
+      text: "From design consultation to final handover, the experience was seamless. Our villa is an architectural masterpiece that exceeds all expectations.",
+      author: "Priya Deshmukh",
+      role: "Entrepreneur",
+      project: "Royal Enclave"
     },
     {
-      name: 'Rajesh Khanna',
-      title: 'Investment Banker',
-      location: 'Grand Meridian, Gurgaon',
-      rating: 5,
-      text: 'Not just a home, but a statement. The quality, location, and amenities are world-class. Best investment decision we\'ve made.',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150'
+      text: "Not just a home, but a statement. The quality, location, and amenities are world-class. Best investment decision we've made.",
+      author: "Rajesh Khanna",
+      role: "Investment Banker",
+      project: "Grand Meridian"
     }
   ];
 
+  const next = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prev = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  // Auto-advance
+  useEffect(() => {
+    const timer = setInterval(next, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative z-20 py-40 md:py-64 px-8 md:px-16 bg-zinc-950">
-      <div className="max-w-[1600px] mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-24"
-        >
+    <section className="relative z-20 py-32 md:py-48 bg-raamah-black overflow-hidden">
+      {/* Background Ambience */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-raamah-gold rounded-full blur-[120px]" />
+      </div>
+
+      <div className="max-w-[1200px] mx-auto px-8 relative">
+        <div className="flex flex-col items-center text-center">
+
+          {/* Section Label */}
           <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 60 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="h-px bg-[#d4af37] mx-auto mb-8"
-          />
+            className="mb-20 md:mb-32"
+          >
+             <div className="text-xs tracking-[0.5em] uppercase text-raamah-gold mb-6">Client Stories</div>
+             <div className="w-px h-16 bg-gradient-to-b from-raamah-gold to-transparent mx-auto opacity-50"></div>
+          </motion.div>
 
-          <div className="text-xs tracking-[0.5em] uppercase text-[#d4af37] mb-8">
-            Client Stories
+          {/* Testimonial Slider */}
+          <div className="relative max-w-5xl min-h-[400px] flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col items-center"
+              >
+                <Quote className="w-12 h-12 text-raamah-gold opacity-40 mb-12" />
+
+                <h3 className="serif text-3xl md:text-5xl lg:text-6xl text-white leading-snug mb-16 font-light max-w-4xl mx-auto">
+                  "{testimonials[currentIndex].text}"
+                </h3>
+
+                <div className="space-y-3">
+                  <div className="text-2xl text-raamah-gold serif">
+                    {testimonials[currentIndex].author}
+                  </div>
+                  <div className="text-sm text-white/50 font-light tracking-[0.2em] uppercase">
+                    {testimonials[currentIndex].role} — {testimonials[currentIndex].project}
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
-          <h2 className="serif text-6xl md:text-8xl text-white leading-[1.1]">
-            Words of
-            <span className="block text-[#d4af37]">Appreciation</span>
-          </h2>
-        </motion.div>
 
-        {/* Testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              whileHover={{ y: -10 }}
-              className="relative group"
+          {/* Controls */}
+          <div className="flex items-center gap-16 mt-20">
+            <button
+              onClick={prev}
+              className="group p-5 rounded-full border border-white/10 hover:border-raamah-gold transition-colors bg-black/50 backdrop-blur-sm"
             >
-              {/* Card */}
-              <div className="relative bg-black border border-stone-800 p-10 group-hover:border-[#d4af37]/50 transition-all">
-                {/* Quote Icon */}
-                <div className="absolute -top-6 -left-6 opacity-20">
-                  <Quote className="w-20 h-20 text-[#d4af37]" />
-                </div>
+              <ArrowLeft className="w-5 h-5 text-white/50 group-hover:text-raamah-gold transition-colors" />
+            </button>
 
-                {/* Stars */}
-                <div className="flex gap-1 mb-8">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#d4af37] text-[#d4af37]" />
-                  ))}
-                </div>
+            <div className="flex gap-4">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentIndex(i)}
+                  className={`h-[2px] transition-all duration-700 ${
+                    i === currentIndex ? 'w-16 bg-raamah-gold' : 'w-6 bg-white/20 hover:bg-white/40'
+                  }`}
+                />
+              ))}
+            </div>
 
-                {/* Text */}
-                <p className="text-stone-300 leading-relaxed mb-10 font-light italic">
-                  "{testimonial.text}"
-                </p>
+            <button
+              onClick={next}
+              className="group p-5 rounded-full border border-white/10 hover:border-raamah-gold transition-colors bg-black/50 backdrop-blur-sm"
+            >
+              <ArrowRight className="w-5 h-5 text-white/50 group-hover:text-raamah-gold transition-colors" />
+            </button>
+          </div>
 
-                {/* Author */}
-                <div className="flex items-center gap-4 pt-8 border-t border-stone-800">
-                  <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <div className="text-white mb-1">{testimonial.name}</div>
-                    <div className="text-xs text-stone-500">{testimonial.title}</div>
-                    <div className="text-xs text-[#d4af37] mt-1">{testimonial.location}</div>
-                  </div>
-                </div>
-
-                {/* Hover Border Effect */}
-                <div className="absolute inset-0 border border-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-              </div>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>

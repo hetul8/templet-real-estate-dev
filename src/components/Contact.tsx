@@ -2,15 +2,13 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 
 export function Contact() {
-  const [formData, setFormData] = useState({
+  const [formState, setFormState] = useState({
     name: '',
     email: '',
     phone: '',
-    interest: 'Luxury Residences',
-    budget: '5-10 Cr',
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
@@ -18,231 +16,135 @@ export function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    // Simulate submission
     setTimeout(() => {
       setSubmitted(false);
-      setFormData({ name: '', email: '', phone: '', interest: 'Luxury Residences', budget: '5-10 Cr', message: '' });
-    }, 4000);
+      setFormState({ name: '', email: '', phone: '', message: '' });
+    }, 3000);
   };
 
   return (
-    <section id="contact" className="relative z-30 py-40 md:py-64 px-8 md:px-16 bg-black">
-      <div className="max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24">
-          {/* Left - Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
+    <section id="contact" className="relative z-30 py-40 md:py-64 px-8 md:px-16 bg-raamah-black border-t border-white/5">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 lg:gap-32">
+
+          {/* Left Column: Context & Info */}
+          <div className="lg:col-span-5 flex flex-col justify-between">
             <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: 60 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="h-px bg-[#d4af37] mb-8"
-            />
+            >
+              <div className="text-xs tracking-[0.4em] uppercase text-raamah-gold mb-8">
+                Inquiries
+              </div>
+              <h2 className="serif text-5xl md:text-7xl text-white leading-[1.1] mb-12">
+                Craft Your <br />
+                <span className="text-raamah-gold italic">Legacy</span>
+              </h2>
+              <p className="text-white/70 text-lg font-light leading-relaxed max-w-md mb-16">
+                We invite you to experience the extraordinary. Schedule a private consultation
+                to discuss your vision with our senior advisors.
+              </p>
 
-            <div className="text-xs tracking-[0.5em] uppercase text-[#d4af37] mb-8">
-              Connect With Us
-            </div>
+              <div className="space-y-10">
+                <div>
+                  <div className="text-xs tracking-widest text-white/50 uppercase mb-3">Headquarters</div>
+                  <p className="text-white text-xl serif">Tower A, Business Bay, Mumbai</p>
+                </div>
+                <div>
+                  <div className="text-xs tracking-widest text-white/50 uppercase mb-3">Direct Line</div>
+                  <p className="text-white text-xl serif">+91 98765 43210</p>
+                </div>
+                <div>
+                  <div className="text-xs tracking-widest text-white/50 uppercase mb-3">Email</div>
+                  <p className="text-white text-xl serif">luxury@raamah.com</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
-            <h2 className="serif text-6xl md:text-7xl text-white mb-12 leading-[1.1]">
-              Begin Your
-              <span className="block text-[#d4af37]">Journey</span>
-            </h2>
-
-            <p className="text-xl text-stone-400 leading-relaxed mb-16 font-light">
-              Schedule a private consultation with our specialists.
-              Experience luxury living firsthand through exclusive property tours.
-            </p>
-
-            {/* Contact Details */}
-            <div className="space-y-8">
-              {[
-                {
-                  icon: MapPin,
-                  title: 'Head Office',
-                  content: 'Tower A, Business Bay\nBandra Kurla Complex, Mumbai 400051'
-                },
-                {
-                  icon: Phone,
-                  title: 'Reach Us',
-                  content: '+91 98765 43210\n+91 98765 43211 (WhatsApp)'
-                },
-                {
-                  icon: Mail,
-                  title: 'Email',
-                  content: 'luxury@prestige.com\nsales@prestige.com'
-                },
-                {
-                  icon: Clock,
-                  title: 'Business Hours',
-                  content: 'Monday - Saturday: 10:00 AM - 8:00 PM\nSunday: By Appointment'
-                }
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex gap-6 group"
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#d4af37] to-[#f0d06c] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <item.icon className="w-5 h-5 text-black" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-[#d4af37] mb-2 tracking-wider">{item.title}</div>
-                    <div className="text-stone-300 text-sm whitespace-pre-line font-light">{item.content}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right - Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <AnimatePresence mode="wait">
-              {!submitted ? (
-                <motion.form
-                  key="form"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onSubmit={handleSubmit}
-                  className="bg-zinc-950 border border-stone-800 p-12"
-                >
-                  <div className="space-y-8">
-                    <div>
-                      <label className="block text-xs tracking-[0.3em] uppercase text-[#d4af37] mb-4">
-                        Your Name *
-                      </label>
+          {/* Right Column: Minimalist Form */}
+          <div className="lg:col-span-7 pt-12">
+            <motion.div
+               initial={{ opacity: 0, x: 20 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true }}
+            >
+              <AnimatePresence mode="wait">
+                {!submitted ? (
+                  <form onSubmit={handleSubmit} className="space-y-16">
+                    <div className="group">
                       <input
                         type="text"
+                        placeholder="Your Name"
                         required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 transition-colors"
-                        placeholder="Enter your full name"
+                        value={formState.name}
+                        onChange={e => setFormState({...formState, name: e.target.value})}
+                        className="w-full bg-transparent border-b border-white/10 py-6 text-3xl text-white placeholder-white/30 outline-none focus:border-raamah-gold transition-colors font-light"
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-xs tracking-[0.3em] uppercase text-[#d4af37] mb-4">
-                          Email *
-                        </label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                      <div className="group">
                         <input
                           type="email"
+                          placeholder="Email Address"
                           required
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 transition-colors"
-                          placeholder="your@email.com"
+                          value={formState.email}
+                          onChange={e => setFormState({...formState, email: e.target.value})}
+                          className="w-full bg-transparent border-b border-white/10 py-6 text-2xl text-white placeholder-white/30 outline-none focus:border-raamah-gold transition-colors font-light"
                         />
                       </div>
-
-                      <div>
-                        <label className="block text-xs tracking-[0.3em] uppercase text-[#d4af37] mb-4">
-                          Phone *
-                        </label>
+                      <div className="group">
                         <input
                           type="tel"
+                          placeholder="Phone Number"
                           required
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 transition-colors"
-                          placeholder="+91 98765 43210"
+                          value={formState.phone}
+                          onChange={e => setFormState({...formState, phone: e.target.value})}
+                          className="w-full bg-transparent border-b border-white/10 py-6 text-2xl text-white placeholder-white/30 outline-none focus:border-raamah-gold transition-colors font-light"
                         />
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-xs tracking-[0.3em] uppercase text-[#d4af37] mb-4">
-                          Interest
-                        </label>
-                        <select
-                          value={formData.interest}
-                          onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                          className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 transition-colors"
-                        >
-                          <option className="bg-black">Luxury Residences</option>
-                          <option className="bg-black">Premium Villas</option>
-                          <option className="bg-black">Commercial Spaces</option>
-                          <option className="bg-black">Investment Advisory</option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-xs tracking-[0.3em] uppercase text-[#d4af37] mb-4">
-                          Budget Range
-                        </label>
-                        <select
-                          value={formData.budget}
-                          onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                          className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 transition-colors"
-                        >
-                          <option className="bg-black">5-10 Cr</option>
-                          <option className="bg-black">10-20 Cr</option>
-                          <option className="bg-black">20+ Cr</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs tracking-[0.3em] uppercase text-[#d4af37] mb-4">
-                        Message
-                      </label>
+                    <div className="group">
                       <textarea
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        rows={4}
-                        className="w-full bg-transparent border-b border-stone-700 focus:border-[#d4af37] outline-none text-white py-3 resize-none transition-colors"
                         placeholder="Tell us about your requirements..."
+                        rows={1}
+                        value={formState.message}
+                        onChange={e => setFormState({...formState, message: e.target.value})}
+                        className="w-full bg-transparent border-b border-white/10 py-6 text-2xl text-white placeholder-white/30 outline-none focus:border-raamah-gold transition-colors resize-none font-light"
                       />
                     </div>
 
-                    <motion.button
-                      type="submit"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full bg-gradient-to-r from-[#d4af37] to-[#f0d06c] text-black py-5 flex items-center justify-center gap-3 group relative overflow-hidden"
-                    >
-                      <span className="text-xs tracking-[0.3em] uppercase font-medium">Submit Inquiry</span>
-                      <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </motion.button>
-                  </div>
-                </motion.form>
-              ) : (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  className="bg-zinc-950 border border-[#d4af37] p-12 text-center"
-                >
+                    <div className="pt-12 flex justify-end">
+                      <button
+                        type="submit"
+                        className="group flex items-center gap-6 text-white text-sm tracking-[0.3em] uppercase hover:text-raamah-gold transition-colors"
+                      >
+                        Submit Request
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-3 transition-transform" />
+                      </button>
+                    </div>
+                  </form>
+                ) : (
                   <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", delay: 0.2 }}
-                    className="w-20 h-20 bg-[#d4af37] rounded-full flex items-center justify-center mx-auto mb-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="h-full flex flex-col items-center justify-center text-center py-20"
                   >
-                    <CheckCircle className="w-10 h-10 text-black" />
+                    <div className="w-20 h-20 rounded-full border border-raamah-gold flex items-center justify-center mb-8">
+                      <Check className="w-8 h-8 text-raamah-gold" />
+                    </div>
+                    <h3 className="serif text-4xl text-white mb-4">Request Received</h3>
+                    <p className="text-white/50">We will be in touch shortly.</p>
                   </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          </div>
 
-                  <h3 className="serif text-4xl text-white mb-4">Thank You</h3>
-                  <p className="text-stone-400 mb-2">Your inquiry has been received.</p>
-                  <p className="text-sm text-[#d4af37]">Our luxury advisor will contact you within 24 hours</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
         </div>
       </div>
     </section>
